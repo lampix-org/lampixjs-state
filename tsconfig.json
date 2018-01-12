@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "outDir": "lib",
+    "module": "es2015",
+    "target": "es5",
+    "lib": ["es2016", "dom"],
+    "declaration": true,
+    "sourceMap": true,
+    "allowJs": false,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
+  }
+}

@@ -1,0 +1,12 @@
+.*
+**/tsconfig.json
+**/tslint.json
+*.tgz
+
+webpack.config.*.js
+rollup.*.js
+
+node_modules
+src
+docs
+internals
