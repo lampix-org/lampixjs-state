@@ -28,6 +28,9 @@
     "typedoc": "0.9.0",
     "typescript": "2.6.2"
   },
+  "peerDependencies": {
+    "@lampix/core": "1.0.0"
+  },
   "lint-staged": {
     "*.ts": [
       "tsc --noEmit",
