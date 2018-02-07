@@ -2,9 +2,9 @@
   "name": "@lampix/state",
   "version": "1.0.0",
   "description": "Lampix.js state manager helper.",
-  "main": "lib/index.js",
+  "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
-  "types": "lib/types.d.ts",
+  "types": "lib/cjs/index.d.ts",
   "scripts": {
     "docs": "typedoc --out docs src/index.ts --name Lampix.js --theme minimal --readme README.md",
     "build:umd": "shx rm -rf ./lib/umd && rollup -c",
