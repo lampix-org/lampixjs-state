@@ -9,6 +9,7 @@ import {
 import { IAreaGroup } from './types';
 import core from '@lampix/core';
 import noop from 'utils/noop';
+import EventTypes from './EventTypes.enum';
 
 const rectanglesToClassifierRectangles = (classifier: string, rectangles: Rect[]): ClassifierRect[] =>
   rectangles.map((rectangle) => {
@@ -22,22 +23,27 @@ const rectanglesToClassifierRectangles = (classifier: string, rectangles: Rect[]
 
 class AreaGroup implements IAreaGroup {
   areas: Rect[];
-  callbacks: {
+  classifier: string;
+  callback: {
+    type: EventTypes,
     onEvent: movementCallback | simpleClassifierCallback | positionClassifierCallback | null,
     preEvent: prePositionClassifierCallback | null
   };
 
   constructor(areas: Rect[]) {
     this.areas = areas;
-    this.callbacks = {
+    this.classifier = null;
+    this.callback = {
+      type: EventTypes.NONE,
       onEvent: null,
       preEvent: null
     };
   }
 
   onMovement(onMovement: movementCallback) {
-    this.callbacks.onEvent = onMovement;
-    this.callbacks.preEvent = null;
+    this.callback.onEvent = onMovement;
+    this.callback.preEvent = null;
+    this.classifier = null;
 
     core.registerMovement(this.areas, onMovement);
   }
@@ -46,8 +52,9 @@ class AreaGroup implements IAreaGroup {
     classifier: string,
     onClassification: simpleClassifierCallback
   ) {
-    this.callbacks.onEvent = onClassification;
-    this.callbacks.preEvent = null;
+    this.callback.onEvent = onClassification;
+    this.callback.preEvent = null;
+    this.classifier = classifier;
 
     const classifierRectangles = rectanglesToClassifierRectangles(classifier, this.areas);
     core.registerSimpleClassifier(classifierRectangles, onClassification);
@@ -55,11 +62,12 @@ class AreaGroup implements IAreaGroup {
 
   onPositionClassification(
     classifier: string,
-    preClassification: prePositionClassifierCallback,
-    onClassification: positionClassifierCallback
+    onClassification: positionClassifierCallback,
+    preClassification: prePositionClassifierCallback
   ) {
-    this.callbacks.onEvent = onClassification || noop;
-    this.callbacks.preEvent = preClassification || noop;
+    this.callback.onEvent = onClassification;
+    this.callback.preEvent = preClassification || noop;
+    this.classifier = classifier;
 
     const classifierRectangles = rectanglesToClassifierRectangles(classifier, this.areas);
     core.registerPositionClassifier(classifierRectangles, onClassification, preClassification);
