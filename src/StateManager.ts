@@ -1,25 +1,21 @@
 import { IStateManager } from './types';
 import State from './State';
 
-type PrivateStateManager = {
-  [stateName: string]: State
-};
-
-const states: PrivateStateManager = {};
+const states: Map<string, State> = new Map();
 
 class StateManager implements IStateManager {
   addState = (stateName: string): State => {
-    if (states[stateName]) {
+    if (states.has(stateName)) {
       console.warn(`State ${stateName} already exists.`);
-      return states[stateName];
+      return states.get(stateName);
     }
 
     const state = new State(stateName);
-    states[stateName] = state;
+    states.set(stateName, state);
     return state;
   }
 
-  getState = (stateName: string): State => states[stateName] || null;
+  getState = (stateName: string): State => states.get(stateName) || null;
   changeToState = (stateName: string): void => console.warn(stateName);
 }
 
