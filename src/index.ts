@@ -1,3 +1,2 @@
-import lampix from '@lampix/core';
-
-lampix.getLampixInfo(console.log);
+import { StateManager } from './StateManager';
+export default new StateManager();

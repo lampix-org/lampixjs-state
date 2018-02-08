@@ -11,12 +11,16 @@ import {
  */
 export interface IAreaGroup {
   areas: Rect[];
+  callbacks: {
+    onEvent: movementCallback | simpleClassifierCallback | positionClassifierCallback | null;
+    preEvent: prePositionClassifierCallback | null
+  };
   onMovement: (callback: movementCallback) => void;
   onSimpleClassification: (classifier: string, callback: simpleClassifierCallback) => void;
   onPositionClassification: (
     classifier: string,
-    onClassification: positionClassifierCallback,
-    beforeClassification: prePositionClassifierCallback
+    preClassification: prePositionClassifierCallback,
+    onClassification: positionClassifierCallback
   ) => void;
 }
 
@@ -31,6 +35,6 @@ export interface IState {
 
 export interface IStateManager {
   addState: (stateName: string) => IState;
-  getState: (stateName: string) => IState;
+  getState: (stateName: string) => IState | null;
   changeToState: (stateName: string) => void;
 }

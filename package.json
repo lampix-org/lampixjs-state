@@ -1,6 +1,6 @@
 {
   "name": "@lampix/state",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Lampix.js state manager helper.",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
@@ -12,6 +12,7 @@
     "build:cjs": "shx rm -rf ./lib/cjs && tsc -m commonjs  --outDir lib/cjs",
     "build": "npm run build:umd && npm run build:cjs && npm run build:esm",
     "prepare": "npm run build",
+    "check-ts": "tsc --noEmit",
     "precommit": "lint-staged"
   },
   "author": "Lampix",
@@ -31,11 +32,10 @@
     "typescript": "2.6.2"
   },
   "peerDependencies": {
-    "@lampix/core": "1.0.0"
+    "@lampix/core": "0.1.0"
   },
   "lint-staged": {
     "*.ts": [
-      "tsc --noEmit",
       "tslint"
     ]
   }

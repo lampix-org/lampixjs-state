@@ -1,17 +1,17 @@
-import { IState, IStateManager } from './types';
+import { IStateManager } from './types';
 import State from './State';
 
 type PrivateStateManager = {
-  [stateName: string]: IState
+  [stateName: string]: State
 };
 
 const states: PrivateStateManager = {};
 
 class StateManager implements IStateManager {
-  addState = (stateName) => {
+  addState = (stateName: string): State => {
     if (states[stateName]) {
-      console.error(`State ${stateName} already exists.`);
-      return null;
+      console.warn(`State ${stateName} already exists.`);
+      return states[stateName];
     }
 
     const state = new State(stateName);
@@ -19,8 +19,8 @@ class StateManager implements IStateManager {
     return state;
   }
 
-  getState = (stateName) => states[stateName] || null;
-  changeToState = (stateName) => null;
+  getState = (stateName: string): State => states[stateName] || null;
+  changeToState = (stateName: string): void => console.warn(stateName);
 }
 
-export default StateManager;
+export { StateManager };
