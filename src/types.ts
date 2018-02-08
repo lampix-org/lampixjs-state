@@ -26,9 +26,7 @@ export interface IAreaGroup {
 
 export interface IState {
   name: string;
-  areaGroups: { // A zone can have >=1 areas
-    [areaGroupName: string]: IAreaGroup
-  };
+  areaGroups: Map<string, IAreaGroup>;
   addAreaGroup: (areaGroupName: string, areas: Rect[]) => IAreaGroup;
   getAreaGroup: (areaGroupName: string) => IAreaGroup;
 }

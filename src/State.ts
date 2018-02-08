@@ -4,20 +4,20 @@ import AreaGroup from './AreaGroup';
 
 class State implements IState {
   name: string;
-  areaGroups: { [areaGroupName: string]: AreaGroup };
-
+  areaGroups: Map<string, AreaGroup>;
   constructor(name: string) {
     this.name = name;
-    this.areaGroups = {};
+    this.areaGroups = new Map();
   }
 
   addAreaGroup(areaGroupName: string, areas: Rect[]) {
     const areaGroup = new AreaGroup(areas);
-    return this.areaGroups[areaGroupName] = areaGroup;
+    this.areaGroups.set(areaGroupName, areaGroup);
+    return areaGroup;
   }
 
   getAreaGroup(areaGroupName: string) {
-    return this.areaGroups[areaGroupName] || null;
+    return this.areaGroups.get(areaGroupName) || null;
   }
 }
 
