@@ -2,25 +2,17 @@ import {
   movementCallback,
   simpleClassifierCallback,
   positionClassifierCallback,
-  Rect,
-  ClassifierRect
 } from '@lampix/core/lib/esm/types';
-import { IStateManager } from './types';
+import { IStateManager } from '../types';
+
+import State from '../State';
+import EventTypes from '../EventTypes.enum';
 
 import core from '@lampix/core';
-import State from './State';
-import EventTypes from './EventTypes.enum';
 import sleep from 'utils/sleep';
-
-const rectanglesToClassifierRectangles = (classifier: string, rectangles: Rect[]): ClassifierRect[] =>
-  rectangles.map((rectangle) => {
-    const classifierRectangle = {
-      ...rectangle,
-      classifier
-    };
-
-    return classifierRectangle;
-  });
+import registerMovement from './utils/register-movement';
+import registerSimpleClassifier from './utils/register-simple-classifier';
+import registerPositionClassifier from './utils/register-position-classifier';
 
 const states: Map<string, State> = new Map();
 
@@ -60,27 +52,24 @@ class StateManager implements IStateManager {
           break;
         }
         case EventTypes.MOVEMENT: {
-          core.registerMovement(areaGroup.areas, areaGroup.callback.onEvent as movementCallback);
+          registerMovement(
+            areaGroup.areas,
+            areaGroup.callback.onEvent as movementCallback
+          );
           break;
         }
         case EventTypes.SIMPLE_CLASSIFIER: {
-          const areas = rectanglesToClassifierRectangles(
+          registerSimpleClassifier(
             areaGroup.classifier,
-            areaGroup.areas
-          );
-          core.registerSimpleClassifier(
-            areas,
+            areaGroup.areas,
             areaGroup.callback.onEvent as simpleClassifierCallback
           );
           break;
         }
         case EventTypes.POSITION_CLASSIFIER: {
-          const areas = rectanglesToClassifierRectangles(
+          registerPositionClassifier(
             areaGroup.classifier,
-            areaGroup.areas
-          );
-          core.registerPositionClassifier(
-            areas,
+            areaGroup.areas,
             areaGroup.callback.onEvent as positionClassifierCallback,
             areaGroup.callback.preEvent
           );

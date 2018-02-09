@@ -7,6 +7,10 @@ import {
 } from '@lampix/core/lib/esm/types';
 import EventTypes from './EventTypes.enum';
 
+export interface IEventEnabler {
+  enable: () => void;
+}
+
 /**
  * A zone can have >= 1 areas defined
  */
@@ -18,13 +22,13 @@ export interface IAreaGroup {
     preEvent: prePositionClassifierCallback | null
   };
   classifier: string;
-  onMovement: (callback: movementCallback) => void;
-  onSimpleClassification: (classifier: string, callback: simpleClassifierCallback) => void;
+  onMovement: (callback: movementCallback) => IEventEnabler;
+  onSimpleClassification: (classifier: string, callback: simpleClassifierCallback) => IEventEnabler;
   onPositionClassification: (
     classifier: string,
     onClassification: positionClassifierCallback,
     preClassification: prePositionClassifierCallback
-  ) => void;
+  ) => IEventEnabler;
 }
 
 export interface IState {
