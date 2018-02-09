@@ -38,5 +38,5 @@ export interface IStateManager {
   currentState: IState;
   addState: (stateName: string) => IState;
   getState: (stateName: string) => IState | null;
-  changeToState: (stateName: string) => void;
+  changeToState: (stateName: string, delay: number) => Promise<void>;
 }

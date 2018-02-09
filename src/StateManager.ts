@@ -8,6 +8,7 @@ import { IStateManager } from './types';
 import core from '@lampix/core';
 import State from './State';
 import EventTypes from './EventTypes.enum';
+import sleep from 'utils/sleep';
 
 const states: Map<string, State> = new Map();
 
@@ -26,10 +27,10 @@ class StateManager implements IStateManager {
   }
 
   getState = (stateName: string): State => states.get(stateName) || null;
-  changeToState = (stateName: string): void => {
+
+  async changeToState(stateName: string, delay: number = 0): Promise<void> {
     if (!states.has(stateName)) {
-      console.error(`State ${stateName} does not exist.`);
-      return;
+      throw new Error(`State ${stateName} does not exist.`);
     }
 
     if (this.currentState) {
@@ -38,22 +39,24 @@ class StateManager implements IStateManager {
       core.unregisterPositionClassifier();
     }
 
+    await sleep(delay);
+
     this.currentState = states.get(stateName);
     this.currentState.areaGroups.forEach((areaGroup) => {
       switch (areaGroup.callback.type) {
         case EventTypes.NONE: {
-          return;
+          break;
         }
         case EventTypes.MOVEMENT: {
           areaGroup.onMovement(areaGroup.callback.onEvent as movementCallback);
-          return;
+          break;
         }
         case EventTypes.SIMPLE_CLASSIFIER: {
           areaGroup.onSimpleClassification(
             areaGroup.classifier,
             areaGroup.callback.onEvent as simpleClassifierCallback
           );
-          return;
+          break;
         }
         case EventTypes.POSITION_CLASSIFIER: {
           areaGroup.onPositionClassification(
@@ -61,7 +64,7 @@ class StateManager implements IStateManager {
             areaGroup.callback.onEvent as positionClassifierCallback,
             areaGroup.callback.preEvent
           );
-          return;
+          break;
         }
       }
     });
