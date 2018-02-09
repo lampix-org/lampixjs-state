@@ -9,7 +9,6 @@ import { IAreaGroup, IEventEnabler } from './types';
 
 import EventTypes from './EventTypes.enum';
 
-import core from '@lampix/core';
 import noop from 'utils/noop';
 import registerMovement from './StateManager/utils/register-movement';
 import registerSimpleClassifier from './StateManager/utils/register-simple-classifier';
