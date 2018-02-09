@@ -1,25 +1,13 @@
 import {
   Rect,
-  ClassifierRect,
   movementCallback,
   simpleClassifierCallback,
   prePositionClassifierCallback,
   positionClassifierCallback
 } from '@lampix/core/lib/esm/types';
 import { IAreaGroup } from './types';
-import core from '@lampix/core';
 import noop from 'utils/noop';
 import EventTypes from './EventTypes.enum';
-
-const rectanglesToClassifierRectangles = (classifier: string, rectangles: Rect[]): ClassifierRect[] =>
-  rectangles.map((rectangle) => {
-    const classifierRectangle = {
-      ...rectangle,
-      classifier
-    };
-
-    return classifierRectangle;
-  });
 
 class AreaGroup implements IAreaGroup {
   areas: Rect[];
@@ -44,8 +32,6 @@ class AreaGroup implements IAreaGroup {
     this.callback.onEvent = onMovement;
     this.callback.preEvent = null;
     this.classifier = null;
-
-    core.registerMovement(this.areas, onMovement);
   }
 
   onSimpleClassification(
@@ -55,9 +41,6 @@ class AreaGroup implements IAreaGroup {
     this.callback.onEvent = onClassification;
     this.callback.preEvent = null;
     this.classifier = classifier;
-
-    const classifierRectangles = rectanglesToClassifierRectangles(classifier, this.areas);
-    core.registerSimpleClassifier(classifierRectangles, onClassification);
   }
 
   onPositionClassification(
@@ -68,9 +51,6 @@ class AreaGroup implements IAreaGroup {
     this.callback.onEvent = onClassification;
     this.callback.preEvent = preClassification || noop;
     this.classifier = classifier;
-
-    const classifierRectangles = rectanglesToClassifierRectangles(classifier, this.areas);
-    core.registerPositionClassifier(classifierRectangles, onClassification, preClassification);
   }
 }
 

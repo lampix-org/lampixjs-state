@@ -1,7 +1,9 @@
 import {
   movementCallback,
   simpleClassifierCallback,
-  positionClassifierCallback
+  positionClassifierCallback,
+  Rect,
+  ClassifierRect
 } from '@lampix/core/lib/esm/types';
 import { IStateManager } from './types';
 
@@ -9,6 +11,16 @@ import core from '@lampix/core';
 import State from './State';
 import EventTypes from './EventTypes.enum';
 import sleep from 'utils/sleep';
+
+const rectanglesToClassifierRectangles = (classifier: string, rectangles: Rect[]): ClassifierRect[] =>
+  rectangles.map((rectangle) => {
+    const classifierRectangle = {
+      ...rectangle,
+      classifier
+    };
+
+    return classifierRectangle;
+  });
 
 const states: Map<string, State> = new Map();
 
@@ -48,19 +60,27 @@ class StateManager implements IStateManager {
           break;
         }
         case EventTypes.MOVEMENT: {
-          areaGroup.onMovement(areaGroup.callback.onEvent as movementCallback);
+          core.registerMovement(areaGroup.areas, areaGroup.callback.onEvent as movementCallback);
           break;
         }
         case EventTypes.SIMPLE_CLASSIFIER: {
-          areaGroup.onSimpleClassification(
+          const areas = rectanglesToClassifierRectangles(
             areaGroup.classifier,
+            areaGroup.areas
+          );
+          core.registerSimpleClassifier(
+            areas,
             areaGroup.callback.onEvent as simpleClassifierCallback
           );
           break;
         }
         case EventTypes.POSITION_CLASSIFIER: {
-          areaGroup.onPositionClassification(
+          const areas = rectanglesToClassifierRectangles(
             areaGroup.classifier,
+            areaGroup.areas
+          );
+          core.registerPositionClassifier(
+            areas,
             areaGroup.callback.onEvent as positionClassifierCallback,
             areaGroup.callback.preEvent
           );
