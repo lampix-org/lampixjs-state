@@ -1,4 +1,4 @@
-# GitHub README template
+# Lampix State Manager
 
 `@lampix/state` is a plugin based on `@lampix/core` that helps with transitioning from one state of the application to another. In this case, a state refers simply to the areas that have (Lampix) event handlers registered for them, such as movement detectors, simple or position classifiers.
 
@@ -100,7 +100,7 @@ This function returns a function that tells Lampix to register the event for thi
 Binds the callback to the area group. This does not notify Lampix of the event.  
 This function returns a function that tells Lampix to register the event for this group immediately.
 
-`onPositionClassifier(classifier: string, onClassification: (rectIndex: number, classifiedObjects: ClassifiedObject[]), preClassification: (rectIndex: number, objects: Outline[]))`
+`onPositionClassification(classifier: string, onClassification: (rectIndex: number, classifiedObjects: ClassifiedObject[]), preClassification: (rectIndex: number, objects: Outline[]))`
 
 Binds the callback to the area group. This does not notify Lampix of the event.  
 This function returns a function that tells Lampix to register the event for this group immediately.
