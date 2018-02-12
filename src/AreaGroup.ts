@@ -9,7 +9,7 @@ import { IAreaGroup, IEventEnabler } from './types';
 
 import EventTypes from './EventTypes.enum';
 
-import noop from 'utils/noop';
+import noop from './utils/noop';
 import registerMovement from './StateManager/utils/register-movement';
 import registerSimpleClassifier from './StateManager/utils/register-simple-classifier';
 import registerPositionClassifier from './StateManager/utils/register-position-classifier';
@@ -34,6 +34,7 @@ class AreaGroup implements IAreaGroup {
   }
 
   onMovement(onMovement: movementCallback): IEventEnabler {
+    this.callback.type = EventTypes.MOVEMENT;
     this.callback.onEvent = onMovement;
     this.callback.preEvent = null;
     this.classifier = null;
@@ -50,6 +51,7 @@ class AreaGroup implements IAreaGroup {
     classifier: string,
     onClassification: simpleClassifierCallback
   ): IEventEnabler {
+    this.callback.type = EventTypes.SIMPLE_CLASSIFIER;
     this.callback.onEvent = onClassification;
     this.callback.preEvent = null;
     this.classifier = classifier;
@@ -68,6 +70,7 @@ class AreaGroup implements IAreaGroup {
     onClassification: positionClassifierCallback,
     preClassification: prePositionClassifierCallback
   ): IEventEnabler {
+    this.callback.type = EventTypes.POSITION_CLASSIFIER;
     this.callback.onEvent = onClassification;
     this.callback.preEvent = preClassification || noop;
     this.classifier = classifier;

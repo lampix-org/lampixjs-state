@@ -9,7 +9,7 @@ import State from '../State';
 import EventTypes from '../EventTypes.enum';
 
 import core from '@lampix/core';
-import sleep from 'utils/sleep';
+import sleep from '../utils/sleep';
 import registerMovement from './utils/register-movement';
 import registerSimpleClassifier from './utils/register-simple-classifier';
 import registerPositionClassifier from './utils/register-position-classifier';
