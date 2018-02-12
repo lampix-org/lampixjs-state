@@ -1,7 +1,7 @@
 {
   "name": "@lampix/state",
   "version": "0.1.0",
-  "description": "Lampix.js state manager helper.",
+  "description": "Lampix.js state manager helper",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
   "types": "lib/cjs/index.d.ts",
