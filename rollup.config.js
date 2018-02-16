@@ -5,7 +5,7 @@ import typescript from 'rollup-plugin-typescript';
 const ts2 = require('typescript');
 
 const defaults = {
-  name: 'lampix',
+  name: 'lampix.stateManager',
   input: 'src/index.ts',
   external: ['@lampix/core'],
   globals: {
