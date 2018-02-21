@@ -33,6 +33,24 @@ class AreaGroup implements IAreaGroup {
     };
   }
 
+  addArea(area: Rect): AreaGroup {
+    this.areas.push(area);
+    return this;
+  }
+
+  removeAreas(identifier: { propName: string, propValue: string | number }): AreaGroup {
+    const { propName, propValue } = identifier;
+
+    if (propName === undefined) {
+      // TODO: Invariant
+      console.error('propName can not be undefined. This will remove all the areas.');
+      return;
+    }
+
+    this.areas = this.areas.filter((area) => !(area[propName] === propValue));
+    return this;
+  }
+
   onMovement(onMovement: movementCallback): IEventEnabler {
     this.callback.type = EventTypes.MOVEMENT;
     this.callback.onEvent = onMovement;
@@ -83,6 +101,38 @@ class AreaGroup implements IAreaGroup {
         preClassification
       )
     };
+  }
+
+  registerEvents(): void {
+    switch (this.callback.type) {
+      case EventTypes.NONE: {
+        break;
+      }
+      case EventTypes.MOVEMENT: {
+        registerMovement(
+          this.areas,
+          this.callback.onEvent as movementCallback
+        );
+        break;
+      }
+      case EventTypes.SIMPLE_CLASSIFIER: {
+        registerSimpleClassifier(
+          this.classifier,
+          this.areas,
+          this.callback.onEvent as simpleClassifierCallback
+        );
+        break;
+      }
+      case EventTypes.POSITION_CLASSIFIER: {
+        registerPositionClassifier(
+          this.classifier,
+          this.areas,
+          this.callback.onEvent as positionClassifierCallback,
+          this.callback.preEvent
+        );
+        break;
+      }
+    }
   }
 }
 
