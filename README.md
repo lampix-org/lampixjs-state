@@ -105,6 +105,15 @@ This function returns a function that tells Lampix to register the event for thi
 Binds the callback to the area group. This does not notify Lampix of the event.  
 This function returns a function that tells Lampix to register the event for this group immediately.
 
+`registerEvents()`
+
+Notifies Lampix of the relationship between the event type, event handler and areas.
+
+`addArea(area: Rect[])`
+`removeAreas(identifier: { propName: string, propValue: any })`
+
+Removes areas that match the given identifier. To easily identify a rectangle in a group of them, we suggest adding a specific property to look for, such as `name` or `id`.
+
 ## Example
 
 ### Using .enable()

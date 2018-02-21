@@ -38,7 +38,7 @@ class AreaGroup implements IAreaGroup {
     return this;
   }
 
-  removeAreas(identifier: { propName: string, propValue: string | number }): AreaGroup {
+  removeAreas(identifier: { propName: string, propValue: any }): AreaGroup {
     const { propName, propValue } = identifier;
 
     if (propName === undefined) {
