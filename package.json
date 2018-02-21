@@ -32,7 +32,7 @@
     "typescript": "2.6.2"
   },
   "peerDependencies": {
-    "@lampix/core": "0.1.0"
+    "@lampix/core": "0.1.2"
   },
   "lint-staged": {
     "*.ts": [
