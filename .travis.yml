@@ -1,0 +1,16 @@
+language: node_js
+node_js: "8"
+
+deploy:
+  provider: npm
+  email: dbalaban@lampix.co
+  api_key:
+    secure: JQRn248boKHKUaQWW2uaoZWFtMgZbFYdGkQrHmitk8OitoMJ3rJK7fLkuYXcIkaQDVWA9bBlAoAv2eEu3EFHQFGIZXu9CKxbTm5zXUyJoEyfNZewFqTg1Jw6WFlYv76pl924nt6BFVJo5pSstBEnoaFjz4qsAEOO60WVobHQ8qIMwXyGKsov9Psnt8b+Oq4DJcsTqoNYXmcMsrWOJQNhBoWTUz9nCvobJfHsUBiKVztG18W6hmSotOWObbZFxdeo32DspRFAH8UTrrY3+aFjGUTZGo3mIvw6yZX8cubkIJoaTDRdRuegHLQcYWt8/lzE726vYHCSIT4gGkSCJjmJjahjJmO6SnEtebJUevjgilJ3B7Cm/jdgcx1Euk1ulpuoMxoYaqTQkPZ4fVAlvyC02fiHRKWbLrdBOA+e1Omw4eUI3THohUsbE/ICX9nSLqV/UDzmp2aV1qXuT20Lq0MNc6a7uip/2rzyRzWI0Vmxw4zadSofsUJLS6K32ycQTmgpgEwcfkLACee6BFUXU1cOvkXfTzPhx8zfdatf73YYtUYrBW4WX3g2QLyivwE4SqKbLoF7aaLPMoTIOyJOgKQ4flb1m2Qc2ggjGC98GtjIuJBr70pFUlLZ+EdlVGw+I+KVIBUFLgc3jS1OnXL6+9dTVIbgEHA2eek3HZ8x1CUTDqA=
+  skip_cleanup: true
+  on:
+    repo: lampix-org/lampixjs-state
+    all_branches: true
+
+branches:
+  only:
+    - /^release\/\d+\.\d+\.\d+$/
