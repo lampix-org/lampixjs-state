@@ -1,6 +1,9 @@
 language: node_js
 node_js: "8"
 
+before_install:
+  - npm install @lampix/core@0.x
+
 deploy:
   provider: npm
   email: dbalaban@lampix.co
