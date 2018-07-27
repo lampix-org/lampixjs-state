@@ -1,16 +1,16 @@
 language: node_js
 node_js: '8'
 before_install:
-  - npm install @lampix/core@0.x
+- npm install @lampix/core@0.x
 deploy:
   provider: npm
   email: dbalaban@lampix.co
   api_key:
-    secure: IWN+vWVuqMwO0vfHwvrzIUq3h3uIYtT++89iP44ee53ARgRKG9UXwZhqtjfJrbC8RRcKp2A7NS+x2qGBbKwKCll6j0nQ0vqQVNUYh+OBOSWPWUP8fa9kBlaIL9qisHCo5QY75435YQWndVXYVo/w6Q+HEoacXhG8sV4lrgbf+FQxu3ZZ4a468d24SH8YiShCGnXQej/kQYii3kgqjq08ivpj/fN0z8XSqYoByhZ9HlsEXMM+qxu+5ubz5/Jt464eR9ZPdhpHKQe0HhdHNXGpE851Rk3uUXonPhM0zFv3e16Y7UZXHVi7nDLiYEZe+yo08bdF+go0ayCeZEBhQeafZMe8WaCz4ihrWHKACMPRxL40fD+/SJOUyk2kDDiW6fiUfvQDuGYwTvwc+R8eAcI3k4xCcGrI5xCA3Pdw8w1am+t7mzgWoqGrKzYJHOlYupEnziUza26sLfpIkQhUJUJvyYZNKaqcVJMX//qDn5H3fWZhOF0SRiZUei1ZCKWgnbR6+nkHMuIomqzueve1vKdlP3k8Wn2pAC94EESKtAlRogPDydlnYWeUaqeYHosKH3YzqCr9pCVV+pjt/+/fopBSTFXU/CVSP+kpXTP66s0zBuOrj7NEkRYRyuBuO6NBn/8YKknYxN3W6dRgw77spR0dd/0aN5MX98LuOagec3rOhhE=
+    secure: AE/wf9bLO9aYmPQdKmpG50gelueh0bKZ7Rf8xv9XrNmmSZ9oDSANHQgYQ0MZPRB1240/O3XzqbdWeWhM0m1s69UjScQ0Up5IWnAZwdRHo5xCwn/MYLvNxSqBZtBff3pqlB865LOOVFtWWRjNf1qkXHUQJloFSUWDJoK8F5gVnqWVBTfS1wSUgS67t6s8Qm9swdrVmxEA9jtFHm7dv4hyj4K7jEhZDXshoDkt6nqhz9+Tqx9ZV6OXQCb2j4+JLEmRdJuvu/4oGFCtif8H/t3x+v1tU0LhHa+JE2D5rhzDPRWq4ISZTWMvGAQVUcsPIhlYeU0QPn/73PTO+b63bG6v3/7zkEZJ4avCtDLcllVcZdBz4rH/OM67YB3fwV5PcU6zf8EFK4JIgdKrROd8MyEuswETC9x0cgural4pvFuw8B9TG9X1/6hAgVthpNZ+RLkJyLg3mgOjIhIwashG5/+ustJpsTyNKuh5/iyYMER6SsFmYi98E2Fuc6K46LVKCC8hMtIbyO3nbTZzIz5e6u/eUZTRkVbxp+y0398mTTmXKZpkAZrTOUOV8owZSOGctudNq/fA4QK98/0TOYDjfGoZ6bQEq7mf/ji/lVjYHtq6zp+oSfo2SprV0zOq3sauzmEFLSYITVw6n0r84cuo2JevJ+fVvQDMS7qRJNmg7PJ/vZE=
   skip_cleanup: true
   on:
     repo: lampix-org/lampixjs-state
     all_branches: true
 branches:
   only:
-    - "/^release\\/\\d+\\.\\d+\\.\\d+$/"
+  - "/^release\\/\\d+\\.\\d+\\.\\d+$/"
