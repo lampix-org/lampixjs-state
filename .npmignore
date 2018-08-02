@@ -3,8 +3,11 @@
 **/tslint.json
 *.tgz
 
-webpack.config.*.js
-rollup.*.js
+rollup.config.js
+webpack.config.js
+
+.editorconfig
+.gitignore
 
 node_modules
 src
