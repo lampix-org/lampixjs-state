@@ -8,7 +8,7 @@
   },
   "main": "lib/lampix.js",
   "module": "lib/lampix.js",
-  "types": "lib/src/index.d.ts",
+  "types": "lib/index.d.ts",
   "files": [
     "assets",
     "lib"
