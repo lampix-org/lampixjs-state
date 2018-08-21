@@ -1,5 +1,5 @@
 import core from '@lampix/core';
-import { Rect, positionClassifierCallback, prePositionClassifierCallback } from '@lampix/core/lib/esm/types';
+import { Rect, positionClassifierCallback, prePositionClassifierCallback } from '@lampix/core/lib/types';
 import rectanglesToClassifierRectangles from './rectangles-to-classifier-rectangles';
 
 export default (

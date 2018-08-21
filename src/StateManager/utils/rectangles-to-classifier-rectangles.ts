@@ -1,9 +1,8 @@
 import {
-  Rect,
-  ClassifierRect
-} from '@lampix/core/lib/esm/types';
+  Rect
+} from '@lampix/core/lib/types';
 
-export default (classifier: string, rectangles: Rect[]): ClassifierRect[] =>
+export default (classifier: string, rectangles: Rect[]): Rect[] =>
   rectangles.map((rectangle) => {
     const classifierRectangle = {
       ...rectangle,

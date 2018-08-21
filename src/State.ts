@@ -1,5 +1,5 @@
 import { IState } from './types';
-import { Rect } from '@lampix/core/lib/esm/types';
+import { Rect } from '@lampix/core/lib/types';
 import AreaGroup from './AreaGroup';
 
 class State implements IState {

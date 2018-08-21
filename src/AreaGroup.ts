@@ -4,7 +4,7 @@ import {
   simpleClassifierCallback,
   prePositionClassifierCallback,
   positionClassifierCallback
-} from '@lampix/core/lib/esm/types';
+} from '@lampix/core/lib/types';
 import { IAreaGroup, IEventEnabler } from './types';
 
 import EventTypes from './EventTypes.enum';
