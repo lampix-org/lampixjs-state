@@ -39,11 +39,12 @@
     "webpack-cli": "3.1.0"
   },
   "peerDependencies": {
-    "@lampix/core": "0.1.2"
+    "@lampix/core": "0.7.15"
   },
   "lint-staged": {
     "*.ts": [
       "tslint"
     ]
-  }
+  },
+  "dependencies": {}
 }
