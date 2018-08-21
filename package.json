@@ -1,6 +1,6 @@
 {
   "name": "@lampix/state",
-  "version": "0.2.5",
+  "version": "0.2.23",
   "description": "Lampix.js state manager helper",
   "repository": {
     "type": "git",
